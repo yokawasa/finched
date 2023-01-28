@@ -1,35 +1,38 @@
-# Docked Rails CLI
+# Finched Rails CLI
 
-Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Docked Rails CLI uses a Docker image to make it much easier, requiring only Docker to be installed.
+This is a fork of [rails/docked](https://github.com/rails/docked).
 
-Install [Docker](https://www.docker.com/products/docker-desktop/) (and [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) on Windows). Then copy'n'paste into your terminal:
+Setting up Rails for the first time with all the dependencies necessary can be daunting for beginners. Finched Rails CLI uses a Open Container Initiative (OCI) image to make it much easier, requiring only Finch to be installed.
+
+Install [Finch](https://github.com/runfinch/finch). Then copy'n'paste into your terminal:
 
 ```bash
-docker volume create ruby-bundle-cache
-alias docked='docker run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 ghcr.io/rails/cli'
+finch volume create ruby-bundle-cache
+
+alias finched='finch run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint "" ghcr.io/rails/cli'
 ```
 
 Then create your Rails app:
 
 ```bash
-docked rails new weblog
+finched rails new weblog
 cd weblog
-docked rails generate scaffold post title:string body:text
-docked rails db:migrate
-docked rails server
+finched rails generate scaffold post title:string body:text
+finched rails db:migrate
+finched rails server
 ```
 
 That's it! Your Rails app is running on `http://localhost:3000/posts`.
 
 ## Adding more aliases
 
-If you'd like to have the standard Ruby and Rails bins available without writing `docked` before each command, you can add them as aliases:
+If you'd like to have the standard Ruby and Rails bins available without writing `finched` before each command, you can add them as aliases:
 
 ```bash
-alias rails='docked rails'
-alias rails-dev='docked bin/dev'
-alias bundle='docked bundle'
-alias yarn='docked yarn'
-alias rake='docked rake'
-alias gem='docked gem'
+alias rails='finched rails'
+alias rails-dev='finched bin/dev'
+alias bundle='finched bundle'
+alias yarn='finched yarn'
+alias rake='finched rake'
+alias gem='finched gem'
 ```
