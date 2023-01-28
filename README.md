@@ -9,7 +9,7 @@ Install [Finch](https://github.com/runfinch/finch). Then copy'n'paste into your 
 ```bash
 finch volume create ruby-bundle-cache
 
-alias finched='finch run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint "" ghcr.io/rails/cli'
+alias finched='finch run --rm -it -v ${PWD}:/rails -v ruby-bundle-cache:/bundle -p 3000:3000 --entrypoint "" ghcr.io/yokawasa/rails/cli'
 ```
 
 Then create your Rails app:
